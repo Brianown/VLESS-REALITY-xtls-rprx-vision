@@ -114,9 +114,16 @@ esac
 info "下载 Xray-core（${XRAY_ZIP}）……"
 TMP_DIR="$(mktemp -d)"
 trap 'rm -rf "${TMP_DIR}"' EXIT
-curl -fL --connect-timeout 15 --max-time 300 \
-    -o "${TMP_DIR}/xray.zip" \
-    "https://github.com/XTLS/Xray-core/releases/latest/download/${XRAY_ZIP}"
+XRAY_URL="https://github.com/XTLS/Xray-core/releases/latest/download/${XRAY_ZIP}"
+for attempt in 1 2 3 4 5; do
+    if curl -fL --retry 3 --retry-delay 5 --connect-timeout 30 --max-time 900 \
+        -o "${TMP_DIR}/xray.zip" "${XRAY_URL}"; then
+        break
+    fi
+    warn "Xray 下载失败，第 ${attempt}/5 次重试……"
+    sleep 5
+done
+[[ -s ${TMP_DIR}/xray.zip ]] || die "Xray 下载失败。可以在网络好的机器下载 ${XRAY_ZIP}，上传到服务器后手动解压。"
 python3 -m zipfile -e "${TMP_DIR}/xray.zip" "${TMP_DIR}/xray"
 install -d -m 755 /usr/local/bin /usr/local/etc/xray /var/log/xray
 install -m 755 "${TMP_DIR}/xray/xray" /usr/local/bin/xray
