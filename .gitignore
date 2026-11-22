@@ -1,0 +1,8 @@
+*.log
+*.tmp
+.DS_Store
+Thumbs.db
+desktop.ini
+server/bin/
+clients/*/dist/
+clients/*/build/
