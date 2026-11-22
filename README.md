@@ -55,20 +55,29 @@ sudo XRAY_PORT=8443 bash /opt/VLESS-REALITY-xtls-rprx-vision-main/server/install
 
 ## 客户端
 
-当前推荐使用支持 VLESS REALITY 的成熟客户端：
+### Windows：Xray Lite
 
-- Windows：[v2rayN](https://github.com/2dust/v2rayN/releases/latest)
-- Android：[v2rayNG](https://github.com/2dust/v2rayNG/releases/latest)
+本仓库包含一个基于 Xray-core TUN 的简单 Windows 客户端：
 
-导入 `/root/vless-reality/vless-url.txt` 中的链接，或扫描二维码。
+<https://github.com/Brianown/VLESS-REALITY-xtls-rprx-vision/raw/main/release/XrayLite-Windows.zip>
 
-Windows 建议开启 **TUN 模式**（需要管理员权限），Android 使用 v2rayNG 默认的 VpnService/TUN。
+- 解压后运行 `XrayLite.exe`（需要管理员权限）；
+- 导入 `vless://` 链接；
+- 连接后使用 Xray TUN 全局模式；
+- 不使用 WireGuard。
+
+### Android
+
+Android 客户端仍在开发中，当前请使用 v2rayNG：
+
+<https://github.com/2dust/v2rayNG/releases/latest>
+
+v2rayNG 导入 `vless://` 链接后使用 VpnService/TUN 即可。
 
 ### 关于 LiteTunnel 同款界面
 
-本项目当前提供的是**服务端与客户端配置**，不是 WireGuard 同款 GUI。
-把 LiteTunnel 的界面完整移植到 Xray/sing-box 需要重写 Windows TUN 和 Android VpnService
-的连接层，属于后续客户端工程；当前可以先使用 v2rayN/v2rayNG 的 TUN 模式。
+Windows 已提供类似 WireGuard 的简洁界面；Android 界面尚未完成端到端验证。
+
 
 ## 目录
 
