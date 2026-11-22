@@ -1,19 +1,35 @@
-# Windows 客户端
+﻿# Xray Lite for Windows
 
-当前推荐使用 **v2rayN**：
+基于 Xray-core 的 VLESS + REALITY + TUN 客户端，界面简洁，类似 WireGuard。
 
-1. 下载：<https://github.com/2dust/v2rayN/releases/latest>
-2. 解压运行（如缺少 .NET 8 Desktop Runtime，按提示安装）；
-3. 复制服务器上的 `vless-url.txt` 内容；
-4. v2rayN → 服务器 → 从剪贴板导入；
-5. 选中节点；
-6. 打开 **TUN 模式**（需要管理员权限）；
-7. 浏览器测试 YouTube。
+## 使用
 
-TUN 模式会接管全局流量；如果只想让浏览器走代理，可以改用系统代理模式。
+1. 下载 `XrayLite-Windows.zip` 并解压；
+2. 运行 `XrayLite.exe`，UAC 选择“是”（TUN 需要管理员权限）；
+3. 点“导入链接”，粘贴服务器生成的 `vless://` 链接；
+4. 选中节点 → 连接；
+5. TUN 全局模式自动接管 IPv4，并阻止 DNS/IPv6 泄漏。
 
-## 关于 LiteTunnel 同款界面
+## 目录
 
-本仓库暂时不包含 WireGuard 同款 GUI。把 LiteTunnel 界面移植到 Xray/sing-box
-需要独立的 Windows TUN 客户端工程，后续再实现；现在用 v2rayN 的 TUN 模式即可达到
-TLS 1.3 REALITY + 全局代理的效果。
+```text
+XrayLite.exe      # 界面
+xray.exe          # Xray-core 内核
+wintun.dll        # Windows TUN 驱动
+config.json       # 连接时自动生成
+xray.log          # 内核日志
+```
+
+## 构建
+
+```powershell
+powershell -ExecutionPolicy Bypass -File .\build.ps1
+```
+
+需要 .NET Framework 4.x 的 `csc.exe`。构建产物在 `dist/`。
+
+## 说明
+
+- 只支持 Windows 10/11 x64；
+- 只用 Xray 内核，不使用 WireGuard；
+- 退出程序会停止 Xray 并移除 TUN。
