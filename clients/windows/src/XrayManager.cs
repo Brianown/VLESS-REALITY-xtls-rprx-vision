@@ -147,7 +147,7 @@ namespace XrayLite
             builder.AppendLine("      \"settings\": {");
             builder.AppendLine("        \"name\": \"xray0\",");
             builder.AppendLine("        \"desc\": \"XrayLite\",");
-            builder.AppendLine("        \"mtu\": 1500,");
+            builder.AppendLine("        \"mtu\": 1400,");
             builder.AppendLine("        \"gateway\": [ \"10.0.0.1/16\" ],");
             builder.AppendLine("        \"dns\": [ \"1.1.1.1\", \"8.8.8.8\" ],");
             builder.AppendLine("        \"autoSystemRoutingTable\": [ \"0.0.0.0/0\" ],");

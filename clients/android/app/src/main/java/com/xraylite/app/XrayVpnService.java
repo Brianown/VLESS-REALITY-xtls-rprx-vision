@@ -1,4 +1,4 @@
-package com.xraylite.app;
+﻿package com.xraylite.app;
 
 import android.app.Notification;
 import android.app.NotificationChannel;
@@ -89,7 +89,7 @@ public final class XrayVpnService extends VpnService {
             builder.addRoute("0.0.0.0", 0);
             builder.addDnsServer("1.1.1.1");
             builder.addDnsServer("8.8.8.8");
-            builder.setMtu(1500);
+            builder.setMtu(1400);
             // Xray 自己连接服务器的流量必须绕过 TUN，否则会回环。
             try {
                 builder.addDisallowedApplication(getPackageName());
@@ -258,7 +258,7 @@ public final class XrayVpnService extends VpnService {
             b.append("  \"log\": {\"loglevel\": \"warning\"},\n");
             b.append("  \"inbounds\": [{\n");
             b.append("    \"protocol\": \"tun\",\n");
-            b.append("    \"settings\": {\"name\": \"xray0\", \"mtu\": 1500}\n");
+            b.append("    \"settings\": {\"name\": \"xray0\", \"mtu\": 1400}\n");
             b.append("  }],\n");
             b.append("  \"outbounds\": [{\n");
             b.append("    \"protocol\": \"vless\",\n");
